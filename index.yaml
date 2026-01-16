@@ -46,6 +46,32 @@ entries:
   clickhouse:
   - apiVersion: v2
     appVersion: 24.1.2
+    created: "2026-01-16T10:47:12.179441064Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: file://../zookeeper
+      version: 0.0.1
+    description: A Helm chart for ClickHouse
+    digest: 2c9d423091174258ff1e7a26e523bae5504c0f7830d69eecff850186ddf92853
+    icon: https://github.com/ClickHouse/clickhouse-docs/raw/84f38d893eb7e561c7296279d7953b6a508ec413/static/img/clickhouse-logo.svg
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: clickhouse
+    sources:
+    - https://github.com/SigNoz/charts
+    - https://github.com/ClickHouse/ClickHouse
+    type: application
+    urls:
+    - https://github.com/offsoc/SigNoz-charts/releases/download/clickhouse-24.1.18/clickhouse-24.1.18.tgz
+    version: 24.1.18
+  - apiVersion: v2
+    appVersion: 24.1.2
     created: "2025-03-07T05:39:57.116397781Z"
     dependencies:
     - condition: zookeeper.enabled
@@ -1390,6 +1416,34 @@ entries:
     - https://github.com/SigNoz/charts/releases/download/clickhouse-9.1.0/clickhouse-9.1.0.tgz
     version: 9.1.0
   k8s-infra:
+  - apiVersion: v2
+    appVersion: 0.139.0
+    created: "2026-01-16T10:47:12.349243685Z"
+    description: Helm chart for collecting metrics and logs in K8s
+    digest: 516ca92c5a097b70295b76006fc4c0fedc2f8660e29fc11850a9158c77a5fbbd
+    home: https://signoz.io
+    icon: https://signoz.io/img/SigNozLogo-orange.svg
+    keywords:
+    - SigNoz
+    - OpenTelemetry
+    - apm
+    - monitoring
+    - logs
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: k8s-infra
+    sources:
+    - https://github.com/signoz/charts
+    - https://github.com/open-telemetry/opentelemetry-collector-contrib
+    type: application
+    urls:
+    - https://github.com/offsoc/SigNoz-charts/releases/download/k8s-infra-0.15.0/k8s-infra-0.15.0.tgz
+    version: 0.15.0
   - apiVersion: v2
     appVersion: 0.109.0
     created: "2025-05-21T08:57:56.388165733Z"
@@ -3182,7 +3236,74 @@ entries:
     urls:
     - https://github.com/SigNoz/charts/releases/download/k8s-infra-0.1.0/k8s-infra-0.1.0.tgz
     version: 0.1.0
+  postgresql:
+  - apiVersion: v2
+    appVersion: 15.0.0
+    created: "2026-01-16T10:47:12.524251043Z"
+    description: A Helm Chart for PostgreSQL
+    digest: aa6c99fc4df7fe3318096603a2e58ff4acf90be02da9236095857018555aa037
+    home: https://signoz.io/
+    icon: https://wiki.postgresql.org/wiki/File:PostgreSQL_logo.3colors.svg
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    name: postgresql
+    sources:
+    - https://github.com/signoz/charts
+    - https://github.com/postgres/postgres
+    type: application
+    urls:
+    - https://github.com/offsoc/SigNoz-charts/releases/download/postgresql-0.0.2/postgresql-0.0.2.tgz
+    version: 0.0.2
   signoz:
+  - apiVersion: v2
+    appVersion: v0.107.0
+    created: "2026-01-16T10:47:12.69923591Z"
+    dependencies:
+    - condition: clickhouse.enabled
+      name: clickhouse
+      repository: https://charts.signoz.io
+      version: 24.1.18
+    - condition: signoz-otel-gateway.enabled
+      name: signoz-otel-gateway
+      repository: https://charts.signoz.io
+      version: 0.0.4
+    - condition: redpanda.enabled
+      name: redpanda
+      repository: https://charts.redpanda.com
+      version: 5.10.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.signoz.io
+      version: 0.0.2
+    description: SigNoz Observability Platform Helm Chart
+    digest: bca9387a84dada0b1bb3503e4b3d98bb7c349a7e7de2633bbec5a036842c6d1a
+    home: https://signoz.io/
+    icon: https://signoz.io/img/SigNozLogo-orange.svg
+    keywords:
+    - SigNoz
+    - opentelemetry
+    - apm
+    - monitoring
+    - distributed tracing
+    - distributed logging
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: signoz
+    sources:
+    - https://github.com/signoz/charts
+    - https://github.com/signoz/signoz
+    - https://github.com/signoz/signoz-otel-collector
+    type: application
+    urls:
+    - https://github.com/offsoc/SigNoz-charts/releases/download/signoz-0.107.0/signoz-0.107.0.tgz
+    version: 0.107.0
   - apiVersion: v2
     appVersion: v0.87.0
     created: "2025-06-11T08:17:41.137476708Z"
@@ -13841,6 +13962,22 @@ entries:
   signoz-otel-gateway:
   - apiVersion: v2
     appVersion: v0.0.16
+    created: "2026-01-16T10:47:12.836110265Z"
+    description: A Helm chart for deploying SigNoz Opentelemetry Gateway
+    digest: 9421d72d7cb20f456f62cb6d5e5d83858cab9d186bc550317683bae9c08cb1bf
+    home: https://signoz.io/
+    icon: https://signoz.io/img/SigNozLogo-orange.svg
+    maintainers:
+    - email: devops@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    name: signoz-otel-gateway
+    type: application
+    urls:
+    - https://github.com/offsoc/SigNoz-charts/releases/download/signoz-otel-gateway-0.0.4/signoz-otel-gateway-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: v0.0.16
     created: "2024-08-08T13:18:26.710216526Z"
     dependencies:
     - condition: postgresql.enabled
@@ -13863,4 +14000,27 @@ entries:
     urls:
     - https://github.com/SigNoz/charts/releases/download/signoz-otel-gateway-0.0.1/signoz-otel-gateway-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-11T08:17:41.138350444Z"
+  zookeeper:
+  - apiVersion: v2
+    appVersion: 3.8.1
+    created: "2026-01-16T10:47:13.033894939Z"
+    dependencies:
+    - name: common
+      repository: file://charts/common
+      tags:
+      - bitnami-common
+      version: 0.0.1
+    description: Bitnami Helm chart for Zookeeper
+    digest: aed92c0497c38eb4a333074c7c639b0e93d1118b1d45d72b163f56ca8bca5c2c
+    icon: https://bitnami.com/assets/stacks/zookeeper/img/zookeeper-stack-220x234.png
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    name: zookeeper
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/zookeeper
+    urls:
+    - https://github.com/offsoc/SigNoz-charts/releases/download/zookeeper-0.0.1/zookeeper-0.0.1.tgz
+    version: 0.0.1
+generated: "2026-01-16T10:47:13.034821496Z"
